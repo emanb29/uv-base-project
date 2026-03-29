@@ -6,9 +6,7 @@ on:
       - ".github/actions/setup-python-with-uv/action.yml"
       - ".github/workflows/lint.yml"
       - "**.py"
-      - "**.sql"
       - ".python-version"
-      - ".sqlfluff"
       - "pyproject.toml"
       - "ruff.toml"
       - "ty.toml"
@@ -26,20 +24,7 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Lint by Ruff
-        run: uv run nox -s lint -- --ruff
-
-  sqlfluff:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Python with uv
-        uses: ./.github/actions/setup-python-with-uv
-
-      - name: Lint by SQLFluff
-        run: uv run nox -s lint -- --sqlfluff
+        run: uv run ruff check . --fix
 
   ty:
     runs-on: ubuntu-latest
@@ -52,4 +37,4 @@ jobs:
         uses: ./.github/actions/setup-python-with-uv
 
       - name: Lint by ty
-        run: uv run nox -s lint -- --ty
+        run: uv run ty check

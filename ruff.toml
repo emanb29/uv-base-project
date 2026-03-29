@@ -8,7 +8,6 @@ exclude = [
     ".hg",
     ".ipynb_checkpoints",
     ".mypy_cache",
-    ".nox",
     ".pants.d",
     ".pyenv",
     ".pytest_cache",

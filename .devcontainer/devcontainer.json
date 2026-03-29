@@ -25,7 +25,9 @@
         }
     ],
     "features": {
-        "ghcr.io/dhoeric/features/hadolint:1": {}
+        "ghcr.io/dhoeric/features/hadolint:1": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
     },
     "customizations": {
         "vscode": {
@@ -37,14 +39,13 @@
                 "mosapride.zenkaku",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
-                "ms-toolsai.jupyter",
                 "njpwerner.autodocstring",
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
-                "sqlfluff.vscode-sqlfluff",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "anthropic.claude-code"
             ]
         }
     },

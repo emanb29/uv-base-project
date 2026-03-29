@@ -4,11 +4,6 @@
     "editor.insertSpaces": true,
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "notebook.codeActionsOnSave": {
-        "notebook.source.fixAll": "explicit",
-        "notebook.source.organizeImports": "explicit"
-    },
-    "notebook.formatOnSave.enabled": true,
     "python.defaultInterpreterPath": ".venv/bin/python",
     "python.languageServer": "None",
     "python.testing.autoTestDiscoverOnSaveEnabled": false,
@@ -17,10 +12,6 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "sqlfluff.config": ".sqlfluff",
-    "sqlfluff.executablePath": ".venv/bin/sqlfluff",
-    "sqlfluff.format.enabled": true,
-    "sqlfluff.linter.run": "onType",
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.profiles.linux": {
         "zsh": {
@@ -50,10 +41,6 @@
         },
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.tabSize": 4
-    },
-    "[sql]": {
-        "editor.defaultFormatter": "sqlfluff.vscode-sqlfluff",
-        "editor.tabSize": 2
     },
     "[toml]": {
         "editor.defaultFormatter": "tamasfe.even-better-toml",

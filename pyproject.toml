@@ -20,17 +20,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "cookiecutter>=2.6.0",
-    "cookiecutter-data-science>=2.3.0",
-    "ipykernel>=7.1.0",
-    "jupyter>=1.1.1",
-    "mkdocs-material>=9.7.1",
-    "nox>=2025.11.12",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "ruff>=0.14.14",
-    "sqlfluff>=4.0.0",
     "ty>=0.0.14",
 ]
 

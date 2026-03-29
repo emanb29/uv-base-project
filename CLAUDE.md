@@ -28,50 +28,24 @@ uv remove <package>
 ### Testing
 ```bash
 # Run all tests with coverage (75% minimum required)
-uv run nox -s test
+uv run pytest
 
 # Run specific test file
 uv run pytest tests/tools/test__logger.py
 
-# Run with JUnit XML output for CI
-uv run nox -s test -- --cov_report xml --junitxml junit.xml
-
-# Run pytest directly (bypasses nox)
-uv run pytest
+# Run with XML output for CI
+uv run pytest --cov-report=xml --junitxml=junit.xml
 ```
 
 ### Linting & Formatting
 ```bash
 # Format code with Ruff
-uv run nox -s fmt -- --ruff
-
-# Format SQL files with SQLFluff
-uv run nox -s fmt -- --sqlfluff
-
-# Format both Python and SQL
-uv run nox -s fmt -- --ruff --sqlfluff
-
-# Lint with all tools (Ruff, SQLFluff, ty)
-uv run nox -s lint -- --ruff --sqlfluff --ty
-
-# Lint with Ruff only
-uv run nox -s lint -- --ruff
-
-# Lint SQL files only
-uv run nox -s lint -- --sqlfluff
-
-# Lint with ty only
-uv run nox -s lint -- --ty
-
-# Run Ruff directly
-uv run ruff check . --fix
 uv run ruff format .
 
-# Run SQLFluff directly
-uv run sqlfluff lint .
-uv run sqlfluff fix .
+# Lint with Ruff
+uv run ruff check . --fix
 
-# Run ty directly
+# Type check with ty
 uv run ty check
 ```
 
@@ -85,18 +59,6 @@ uv run pre-commit run --all-files
 
 # Run specific hook
 uv run pre-commit run ruff-format
-```
-
-### Documentation
-```bash
-# Serve docs locally at http://127.0.0.1:8000
-uv run mkdocs serve
-
-# Build documentation
-uv run mkdocs build
-
-# Deploy to GitHub Pages
-uv run mkdocs gh-deploy
 ```
 
 ## Architecture
@@ -168,40 +130,13 @@ Tests in `tests/tools/` mirror the package structure:
 - Per-file ignores for test files
 
 **ty (ty.toml)**:
-- Includes `tools/`, `tests/` packages, and `noxfile.py`
+- Includes `tools/` and `tests/` packages
 - Excludes cache directories (`__pycache__`, `.pytest_cache`, `.ruff_cache`, `.venv`)
 
 **pytest (pytest.ini)**:
 - Coverage: 75% minimum with branch coverage
 - Reports: HTML + terminal
 - Import mode: importlib
-
-**SQLFluff (.sqlfluff)**:
-- Dialect: BigQuery
-- Max line length: 80
-- Tab space size: 2
-- Custom rules for join qualification and unused joins
-
-### Nox Task Automation
-
-The `noxfile.py` uses a custom `CLIArgs` parser (Pydantic-based):
-- All sessions use `python=False` (rely on `uv run`)
-- Arguments passed via `-- --flag value` syntax
-- Sessions: `fmt`, `lint`, `test`
-
-Example of the argument parsing pattern:
-```python
-# noxfile.py
-@nox.session(python=False)
-def lint(session: nox.Session) -> None:
-    args = CLIArgs.parse(session.posargs)
-    if args.ty:
-        session.run("uv", "run", "ty", "check")
-    if args.ruff:
-        session.run("uv", "run", "ruff", "check", ".", "--fix")
-    if args.sqlfluff:
-        session.run("uv", "run", "sqlfluff", "lint", ".")
-```
 
 ## Key Patterns for Development
 
@@ -238,17 +173,6 @@ When testing the utilities themselves:
 - Config: Use Pydantic's model instantiation with kwargs to override values
 - Timer: Check debug logs for execution time messages
 
-## Documentation Structure
-
-The `docs/` directory is organized for MkDocs:
-- **docs/index.md**: Main landing page
-- **docs/getting-started/**: Setup guides (Docker, VSCode, Dev Container)
-- **docs/guides/**: Tool usage guides (uv, Ruff, ty, pre-commit, tools package)
-- **docs/configurations/**: Detailed configuration references
-- **docs/usecases/**: Real-world examples (Jupyter, FastAPI, OpenCV)
-
-When adding new utilities to `tools/`, add corresponding documentation to `docs/guides/tools/`.
-
 ## CI/CD Workflows
 
 GitHub Actions workflows in `.github/workflows/`:
@@ -256,18 +180,18 @@ GitHub Actions workflows in `.github/workflows/`:
 - **docker.yml**: Validate Docker build
 - **devcontainer.yml**: Validate Dev Container configuration
 - **format.yml**: Check Ruff formatting
-- **labeler.yml**: Add label in GitHub
 - **lint.yml**: Run Ruff + ty linting
 - **test.yml**: Run pytest with coverage
-- **gh-deploy.yml**: Deploy documentation to GitHub Pages
-
-All workflows use the same nox commands as local development.
+- **publish-app.yml**: Publish app image to GHCR
+- **publish-devcontainer.yml**: Publish dev container image to GHCR
+- **release.yml**: Draft and publish releases
 
 ## Pull Request Process
 
 For comprehensive contribution guidelines, including detailed steps for creating and reviewing Pull Requests, please refer to [CONTRIBUTING.md](CONTRIBUTING.md) in the repository root.
 
 **Code of Conduct**: All contributors must follow our [Code of Conduct](CODE_OF_CONDUCT.md). We maintain a welcoming, inclusive, and harassment-free environment for everyone.
+
 ## Environment Variables
 
 Critical environment variables (set in `.env.local`):
@@ -280,7 +204,6 @@ Critical environment variables (set in `.env.local`):
 - **Coverage is enforced**: Tests must maintain 75% coverage (configured in pytest.ini)
 - **uv replaces pip/poetry**: Use `uv add` not `pip install`, use `uv.lock` not `requirements.txt`
 - **Ruff replaces multiple tools**: No need for Black, isort, Flake8, etc.
-- **nox is the task runner**: Prefer `uv run nox -s <session>` over direct tool calls
 - **Test naming**: Use `test__*.py` pattern (double underscore)
 - **Type checking**: ty checks both the `tools/` and `tests/` packages
 

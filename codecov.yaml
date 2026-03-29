@@ -44,5 +44,4 @@ comment:
 
 ignore:
   - "tests/*"
-  - "noxfile.py"
   - "**/__init__.py"
