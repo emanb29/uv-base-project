@@ -22,6 +22,11 @@
             "source": "venv-${devcontainerId}",
             "target": "${containerWorkspaceFolder}/.venv",
             "type": "volume"
+        },
+        {
+            "source": ".devcontainer/.claude",
+            "target": "/home/${remoteUser}/.claude",
+            "type": "bind"
         }
     ],
     "features": {
