@@ -48,7 +48,6 @@ A production-ready Python development environment template using modern tools: *
     - [Pytest Configuration](#pytest-configuration)
   - [🔄 CI/CD](#-cicd)
   - [🎨 VSCode Configuration](#-vscode-configuration)
-  - [🍪 Cookiecutter Templates](#-cookiecutter-templates)
   - [📖 Documentation](#-documentation)
   - [🌿 Branches](#-branches)
   - [📄 License](#-license)
@@ -378,25 +377,6 @@ The Dev Container includes pre-configured extensions and settings for optimal Py
 - ✅ Organize imports on save
 
 > **Troubleshooting**: If Ruff formatting doesn't work, reload the window: `Cmd+Shift+P` → "Developer: Reload Window"
-
-## 🍪 Cookiecutter Templates
-
-This repository can be used as a base template for various Python projects. Combine it with Cookiecutter to bootstrap project-specific setups:
-
-```bash
-# Install cookiecutter
-uv add --dev cookiecutter
-
-# Use a template
-uv run cookiecutter <template-url>
-```
-
-**Recommended templates:**
-
-- **Data Science**: [cookiecutter-data-science](https://github.com/drivendataorg/cookiecutter-data-science) - Standardized data science project structure
-- **FastAPI**: [full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template) - Full-stack web applications
-- **Django**: [cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django) - Production-ready Django projects
-- **Flask**: [cookiecutter-flask](https://github.com/cookiecutter-flask/cookiecutter-flask) - Flask web applications
 
 ## 📖 Documentation
 
