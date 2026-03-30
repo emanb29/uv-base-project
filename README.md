@@ -36,7 +36,6 @@ A production-ready Python development environment template using modern tools: *
     - [Installing Dependencies](#installing-dependencies)
     - [Running Tasks](#running-tasks)
     - [Pre-commit Hooks](#pre-commit-hooks)
-    - [Documentation](#documentation)
   - [🏗️ Project Structure](#️-project-structure)
     - [Built-in Utility Modules](#built-in-utility-modules)
       - [**Logger** - Dual-mode logging system](#logger---dual-mode-logging-system)
@@ -64,7 +63,6 @@ A production-ready Python development environment template using modern tools: *
 - ✅ **Pre-configured testing** with pytest (75% coverage requirement)
 - 🔄 **Automated CI/CD** with GitHub Actions
 - 📦 **Reusable utilities** - Logger, configuration management, and performance tracing tools
-- 🎯 **Task automation** with nox
 - 🪝 **Pre-commit hooks** for automatic code quality checks
 
 ## 🚀 Quick Start
@@ -87,11 +85,12 @@ A production-ready Python development environment template using modern tools: *
    uv sync
 
    # Run tests
-   uv run nox -s test
+   uv run pytest
 
    # Format and lint
-   uv run nox -s fmt
-   uv run nox -s lint -- --ruff --ty
+   uv run ruff format .
+   uv run ruff check . --fix
+   uv run ty check
    ```
 
 ### Using Docker Only
@@ -143,45 +142,24 @@ uv add --dev pytest-mock
 
 ### Running Tasks
 
-This project uses **nox** for task automation. All common development tasks are available as nox sessions:
-
 ```bash
 # Format code with Ruff
-uv run nox -s fmt
+uv run ruff format .
 
-# Run linters (Ruff + ty)
-uv run nox -s lint -- --ruff --ty
+# Lint with Ruff (auto-fix)
+uv run ruff check . --fix
 
-# Run only ty
-uv run nox -s lint -- --ty
-
-# Run only Ruff linter
-uv run nox -s lint -- --ruff
+# Type check with ty
+uv run ty check
 
 # Run tests with coverage (75% minimum required)
-uv run nox -s test
-
-# Run tests with JUnit XML output (for CI)
-uv run nox -s test -- --cov_report xml --junitxml junit.xml
-```
-
-You can also run tools directly:
-
-```bash
-# Run pytest directly
 uv run pytest
 
 # Run specific test file
 uv run pytest tests/tools/test__logger.py
 
-# Format with Ruff
-uv run ruff format .
-
-# Lint with Ruff
-uv run ruff check . --fix
-
-# Type check with ty
-uv run ty check
+# Run tests with JUnit XML output (for CI)
+uv run pytest --cov-report=xml --junitxml=junit.xml
 ```
 
 ### Pre-commit Hooks
@@ -204,21 +182,6 @@ Configured hooks:
 - Private key detection
 - Dockerfile linting with hadolint
 
-### Documentation
-
-Generate and serve documentation with MkDocs:
-
-```bash
-# Serve locally at http://127.0.0.1:8000
-uv run mkdocs serve
-
-# Build static site
-uv run mkdocs build
-
-# Deploy to GitHub Pages
-uv run mkdocs gh-deploy
-```
-
 ## 🏗️ Project Structure
 
 ```
@@ -239,7 +202,6 @@ uv run mkdocs gh-deploy
 ├── CODE_OF_CONDUCT.md      # Community Code of Conduct
 ├── CONTRIBUTING.md         # Contribution guidelines
 ├── CLAUDE.md               # Claude Code development guidance
-├── noxfile.py              # Task automation configuration (test, lint, fmt)
 ├── pyproject.toml          # Project metadata and dependencies (uv)
 ├── ruff.toml               # Ruff linter/formatter configuration
 └── pytest.ini              # Pytest configuration (75% coverage requirement)
@@ -338,15 +300,15 @@ Automated workflows ensure code quality and consistency. All workflows run on pu
 
 | Workflow                   | Purpose                              | Tools Used       |
 | -------------------------- | ------------------------------------ | ---------------- |
+| `actionlint.yml`           | Lint GitHub Actions workflows        | actionlint       |
 | `docker.yml`               | Validate Docker build                | Docker           |
 | `devcontainer.yml`         | Validate Dev Container configuration | devcontainer CLI |
 | `format.yml`               | Check code formatting                | Ruff             |
-| `labeler.yml`              | Add label in GitHub                  | GitHub           |
 | `lint.yml`                 | Run static analysis                  | Ruff, ty         |
 | `test.yml`                 | Run test suite with coverage         | pytest, coverage |
-| `gh-deploy.yml`            | Deploy documentation to GitHub Pages | MkDocs           |
-| `pr-agent.yml`             | Automated PR reviews                 | Qodo AI PR Agent |
+| `publish-app.yml`          | Publish app image to GHCR            | Docker, GHCR     |
 | `publish-devcontainer.yml` | Publish Dev Container image          | Docker, GHCR     |
+| `release.yml`              | Draft and publish releases           | GitHub           |
 
 ## 🎨 VSCode Configuration
 
@@ -408,7 +370,6 @@ This template is built on top of excellent open-source tools:
 - **[uv](https://github.com/astral-sh/uv)** by Astral - Ultra-fast Python package manager
 - **[Ruff](https://github.com/astral-sh/ruff)** by Astral - Lightning-fast linter and formatter
 - **[ty](https://github.com/astral-sh/ty)** by Astral - Static type checker for Python
-- **[nox](https://nox.thea.codes/)** - Flexible task automation for Python
 - **[pytest](https://pytest.org/)** - Testing framework for Python
 - **[MkDocs](https://www.mkdocs.org/)** - Documentation site generator
 
