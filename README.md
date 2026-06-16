@@ -6,12 +6,11 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 
-[![Versions](https://img.shields.io/badge/python-3.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/a5chin/python-uv)
-[![codecov](https://codecov.io/github/a5chin/python-uv/graph/badge.svg?token=M9JIB8T6R4)](https://codecov.io/github/a5chin/python-uv)
+[![Versions](https://img.shields.io/badge/python-3.11%20|%203.12%20|%203.13%20|%203.14%20-green.svg)](https://github.com/emanb29/uv-base-project)
 
-[![Docker](https://github.com/a5chin/python-uv/actions/workflows/docker.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/docker.yml)
-[![Format](https://github.com/a5chin/python-uv/actions/workflows/format.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/format.yml)
-[![Lint](https://github.com/a5chin/python-uv/actions/workflows/lint.yml/badge.svg)](https://github.com/a5chin/python-uv/actions/workflows/lint.yml)
+[![Docker](https://github.com/emanb29/uv-base-project/actions/workflows/docker.yml/badge.svg)](https://github.com/emanb29/uv-base-project/actions/workflows/docker.yml)
+[![Format](https://github.com/emanb29/uv-base-project/actions/workflows/format.yml/badge.svg)](https://github.com/emanb29/uv-base-project/actions/workflows/format.yml)
+[![Lint](https://github.com/emanb29/uv-base-project/actions/workflows/lint.yml/badge.svg)](https://github.com/emanb29/uv-base-project/actions/workflows/lint.yml)
 
 </div>
 
@@ -47,8 +46,6 @@ A production-ready Python development environment template using modern tools: *
     - [Pytest Configuration](#pytest-configuration)
   - [🔄 CI/CD](#-cicd)
   - [🎨 VSCode Configuration](#-vscode-configuration)
-  - [📖 Documentation](#-documentation)
-  - [🌿 Branches](#-branches)
   - [📄 License](#-license)
   - [🙏 Acknowledgments](#-acknowledgments)
 
@@ -73,8 +70,8 @@ A production-ready Python development environment template using modern tools: *
 
 2. **Open in container**:
    ```bash
-   git clone https://github.com/a5chin/python-uv.git
-   cd python-uv
+   git clone https://github.com/emanb29/uv-base-project.git
+   cd uv-base-project
    code .
    ```
    When prompted, click "Reopen in Container"
@@ -112,8 +109,8 @@ docker run -it --rm -v $(pwd):/workspace python-uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup
-git clone https://github.com/a5chin/python-uv.git
-cd python-uv
+git clone https://github.com/emanb29/uv-base-project.git
+cd uv-base-project
 
 # Install dependencies
 uv sync
@@ -339,25 +336,6 @@ The Dev Container includes pre-configured extensions and settings for optimal Py
 - ✅ Organize imports on save
 
 > **Troubleshooting**: If Ruff formatting doesn't work, reload the window: `Cmd+Shift+P` → "Developer: Reload Window"
-
-## 📖 Documentation
-
-Comprehensive documentation is available at **[https://a5chin.github.io/python-uv](https://a5chin.github.io/python-uv)**
-
-**Topics covered:**
-- 🚀 **Getting Started** - Docker, VSCode, Dev Containers setup
-- ⚙️ **Tool Configurations** - uv, Ruff, ty, pre-commit
-- 🧪 **Testing Strategies** - pytest, coverage, and best practices
-- 🛠️ **Utility Modules** - Config, logger, and tracer guides
-- 💡 **Use Cases** - Jupyter, FastAPI, OpenCV examples
-
-## 🌿 Branches
-
-This repository maintains multiple branches for different use cases:
-
-- **[main](https://github.com/a5chin/python-uv/tree/main)** - Current production-ready template (recommended)
-- **[jupyter](https://github.com/a5chin/python-uv/tree/jupyter)** - Archived: Jupyter-specific configuration
-- **[rye](https://github.com/a5chin/python-uv/tree/rye)** - Archived: Rye package manager version (replaced by uv)
 
 ## 📄 License
 

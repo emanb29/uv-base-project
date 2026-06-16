@@ -50,14 +50,13 @@ jobs:
             type=sha,prefix={{branch}}-
             type=raw,value=latest,enable={{is_default_branch}}
           labels: |
-            maintainer=a5chin <a5chin.origin+contact@gmail.com>
+            maintainer=Ethan Bell (emanb29) <eb@ethanbell.me>
             org.opencontainers.image.url=https://github.com/${{ github.repository }}
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.vendor=a5chin <a5chin.origin+contact@gmail.com>
-            org.opencontainers.image.title=python-uv
+            org.opencontainers.image.vendor=Ethan Bell (emanb29) <eb@ethanbell.me>
+            org.opencontainers.image.title=uv-base-project
             org.opencontainers.image.description=App for Python development with uv-based dependency management and environment configuration.
-            org.opencontainers.image.documentation=https://a5chin.github.io/python-uv/
-            org.opencontainers.image.authors=a5chin <a5chin.origin+contact@gmail.com>
+            org.opencontainers.image.authors=Ethan Bell (emanb29) <eb@ethanbell.me>
             org.opencontainers.image.licenses=MIT
 
       - name: Build and Push App Image
