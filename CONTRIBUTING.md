@@ -38,8 +38,8 @@ Thank you for your interest in contributing to python-uv! This document provides
 
 ```bash
 # Clone the repository
-git clone https://github.com/a5chin/python-uv.git
-cd python-uv
+git clone https://github.com/emanb29/uv-base-project.git
+cd uv-base-project
 
 # Open in VSCode
 code .
@@ -54,8 +54,8 @@ code .
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone the repository
-git clone https://github.com/a5chin/python-uv.git
-cd python-uv
+git clone https://github.com/emanb29/uv-base-project.git
+cd uv-base-project
 
 # Install dependencies
 uv sync
@@ -442,8 +442,7 @@ uv sync
 
 ### Resources
 
-- **Documentation**: https://a5chin.github.io/python-uv
-- **Detailed Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTINGmd)
+- **Detailed Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md)
 - **PR Template**: [.github/pull_request_template.md](.github/pull_request_template.md)
 
 ### Questions and Discussions
